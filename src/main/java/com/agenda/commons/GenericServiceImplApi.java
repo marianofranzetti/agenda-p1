@@ -14,6 +14,7 @@ public abstract class GenericServiceImplApi<T, ID extends Serializable> implemen
 	@Override
 	public T Save(T entity) {
 		// TODO Auto-generated method stub
+		
 		return getDao().save(entity);
 	}
 
@@ -41,6 +42,13 @@ public abstract class GenericServiceImplApi<T, ID extends Serializable> implemen
 		getDao().findAll().forEach(obj -> lista.add(obj));
 		
 		return lista;
+	}
+	
+	public void update(T entity) {
+		
+		//getDao().save
+		//no se puede con jpa
+		
 	}
 	
 	

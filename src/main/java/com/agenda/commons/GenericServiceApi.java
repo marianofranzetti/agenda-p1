@@ -12,5 +12,7 @@ public interface GenericServiceApi<T, ID extends Serializable> {
 	T get(ID id);
 	
 	List<T> getAll();
+	
+	void update(T entity);
 
 }
