@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Personas</title>
+
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<link href="../static/css/prueba.css" rel="stylesheet" th:href="@{/css/prueba.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<div>
+			<a href="/home/create" class="btn btn-primary">Agregar</a>
+		</div>
+		<div style="margin-top: 20px;">
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" class="btn btn-success" value="Cerrar sesión">
+			</form>
+		</div>
+		<h2 th:if="${list == null} OR ${list.isEmpty()}">No hay personas</h2>
+		<div th:if=" ${list != null} AND ${!list.isEmpty()}">
+			<h2>Personas</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Teléfono</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="persona : ${list}">
+						<td th:text="${persona.nombre}">
+						<td th:text="${persona.telefono}">
+						<td><a class="btn btn-info"
+							th:href="@{/home/save/{id}(id=${persona.id})}">Editar</a></td>
+						<td><a class="btn btn-danger"
+							th:href="@{/home/delete/{id}(id=${persona.id})}">Eliminar</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br>
+	<br>
+	<div style="position: fixed; top: 50%; left: 40%; width: 250px;border: 1px;">
+		<form style="width: 300px; height: 300px;">
+			<div class="form-group row">
+				<label for="staticEmail"
+					style="position: fixed; top: 50%; left: 35%; width: 250px;"
+					class="col-sm-2 col-form-label">Nombre</label>
+				<div class="col-sm-10">
+					<input type="text" readonly class="form-control-plaintext"
+						id="staticEmail" value="email@example.com">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label"
+					style="position: fixed; top: 56%; left: 35%; width: 250px;">Telefono</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputPassword"
+						placeholder="Password">
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+
+</body>
+</html>
